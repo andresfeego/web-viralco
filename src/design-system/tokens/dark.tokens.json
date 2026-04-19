@@ -1,0 +1,123 @@
+{
+  "mode": "dark",
+  "color": {
+    "semantic": {
+      "background": {
+        "canvas": {
+          "default": "#0b1320",
+          "subtle": "#182131",
+          "elevated": "#2d3748",
+          "sunken": "#070d18"
+        }
+      },
+      "surface": {
+        "panel": {
+          "default": "rgba(24, 33, 49, 0.88)",
+          "muted": "rgba(11, 19, 32, 0.92)",
+          "elevated": "rgba(45, 55, 72, 0.96)",
+          "overlay": "rgba(11, 19, 32, 0.72)"
+        },
+        "card": {
+          "default": "rgba(24, 33, 49, 0.92)",
+          "subtle": "rgba(16, 24, 38, 0.88)",
+          "interactive": "rgba(29, 41, 61, 0.96)",
+          "selected": "rgba(22, 115, 255, 0.18)"
+        }
+      },
+      "text": {
+        "primary": {
+          "default": "#ffffff",
+          "hover": "#f7f9fc",
+          "inverse": "#0b1320"
+        },
+        "secondary": {
+          "default": "#c9d3e1",
+          "hover": "#e7edf5"
+        },
+        "muted": {
+          "default": "#9aa8bd",
+          "hover": "#c9d3e1"
+        },
+        "accent": {
+          "default": "#ffe693",
+          "hover": "#fff1bf"
+        },
+        "info": {
+          "default": "#aef5ff"
+        },
+        "danger": {
+          "default": "#ffbdb8"
+        }
+      },
+      "border": {
+        "subtle": {
+          "default": "rgba(151, 168, 191, 0.12)",
+          "strong": "rgba(151, 168, 191, 0.24)"
+        },
+        "accent": {
+          "default": "rgba(22, 115, 255, 0.28)",
+          "focus": "rgba(22, 115, 255, 0.42)"
+        },
+        "warning": {
+          "default": "rgba(255, 191, 0, 0.26)"
+        },
+        "danger": {
+          "default": "rgba(255, 189, 184, 0.22)"
+        }
+      },
+      "action": {
+        "primary": {
+          "default": "#1673ff",
+          "hover": "#5f99ff",
+          "pressed": "#0c5ee0",
+          "disabled": "rgba(22, 115, 255, 0.28)",
+          "text": "#ffffff"
+        },
+        "secondary": {
+          "default": "#ffbf00",
+          "hover": "#ffd85c",
+          "pressed": "#f0ab00",
+          "disabled": "rgba(255, 191, 0, 0.18)",
+          "text": "#452b00"
+        },
+        "tertiary": {
+          "default": "transparent",
+          "hover": "rgba(255, 255, 255, 0.06)",
+          "pressed": "rgba(255, 255, 255, 0.1)",
+          "disabled": "rgba(255, 255, 255, 0.04)",
+          "text": "#e7edf5"
+        },
+        "danger": {
+          "default": "#cb3347",
+          "hover": "#de4156",
+          "pressed": "#9e1d30",
+          "disabled": "rgba(203, 51, 71, 0.24)",
+          "text": "#ffffff"
+        }
+      },
+      "feedback": {
+        "info": {
+          "default": "#51e7ff",
+          "surface": "rgba(81, 231, 255, 0.16)"
+        },
+        "success": {
+          "default": "#aef5ff",
+          "surface": "rgba(174, 245, 255, 0.14)"
+        },
+        "warning": {
+          "default": "#ffe693",
+          "surface": "rgba(255, 230, 147, 0.14)"
+        },
+        "danger": {
+          "default": "#ffbdb8",
+          "surface": "rgba(255, 189, 184, 0.16)"
+        }
+      },
+      "focus": {
+        "ring": {
+          "default": "rgba(22, 115, 255, 0.34)"
+        }
+      }
+    }
+  }
+}

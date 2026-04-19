@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import type { Post } from '../api.ts';
+import { PreviewModal, UIButton, UICard } from '../design-system/components/index.ts';
 
 interface PostCardProps {
   post: Post;
@@ -6,43 +8,72 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post, onDelete }: PostCardProps) {
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
   return (
-    <div className="bg-white shadow-md rounded-md border border-gray-200">
-      <picture>
-        {post.mediaType?.startsWith('video/') ? (
-          <video
-            controls
-            className="w-full h-[250px] object-contain rounded-t-md bg-black"
-            src={post.imageUrl}
-          />
-        ) : (
-          <img
-            src={post.imageUrl}
-            alt={post.title}
-            className="w-full h-[250px] aspect-square object-contain rounded-t-md"
-          />
-        )}
-      </picture>
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-4">{post.title}</h3>
-        <div className="flex flex-wrap gap-3">
-          {post.id && (
-            <a
-              className="bg-blue-600 px-4 py-2 rounded-md text-white"
-              href={`http://localhost:4000/api/posts/${post.id}/download`}
+    <>
+      <UICard
+        className="vu-post-card"
+        eyebrow="Media asset"
+        title={post.title}
+        body="Asset listo para revisar, descargar o eliminar desde el flujo operativo."
+        headerAside={<span className="vu-post-status">Live</span>}
+        media={
+          <div className="vu-post-frame">
+            {post.mediaType?.startsWith('video/') ? (
+              <video
+                controls
+                className="vu-post-media"
+                src={post.imageUrl}
+              />
+            ) : (
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="vu-post-media"
+              />
+            )}
+          </div>
+        }
+        actions={
+          <>
+            {post.id && (
+              <UIButton
+                href={`http://localhost:4000/api/posts/${post.id}/download`}
+                variant="primary"
+                size="sm"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Descargar
+              </UIButton>
+            )}
+            <UIButton variant="secondary" onClick={() => setIsPreviewOpen(true)} size="sm">
+              Ver
+            </UIButton>
+            <UIButton
+              variant="danger"
+              onClick={onDelete}
+              size="sm"
+              type="button"
             >
-              Descargar
-            </a>
-          )}
-          <button
-            className="bg-red-500 px-4 py-2 rounded-md text-white"
-            onClick={onDelete}
-            type="button"
-          >
-            Eliminar
-          </button>
+              Eliminar
+            </UIButton>
+          </>
+        }
+      >
+        <div className="vu-post-meta">
+          <span className="vu-post-meta-item">{post.mediaType ?? 'asset'}</span>
         </div>
-      </div>
-    </div>
+      </UICard>
+
+      <PreviewModal
+        mediaType={post.mediaType}
+        mediaUrl={post.imageUrl}
+        onClose={() => setIsPreviewOpen(false)}
+        open={isPreviewOpen}
+        title={post.title}
+      />
+    </>
   );
 }

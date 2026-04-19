@@ -30,37 +30,43 @@ export default function FileUpload({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-white border border-gray-200 rounded-lg min-h-[200px] relative">
+    <div className="vu-upload">
+      <input
+        type="file"
+        accept="image/*,video/*"
+        onChange={handleFileChange}
+        className="vu-upload-input"
+      />
       {preview ? (
-        <div className="mt-6">
+        <div className="vu-upload-preview">
           {previewType?.startsWith('video/') ? (
             <video
               controls
-              className="max-w-xs max-h-72 rounded bg-black"
+              className="vu-upload-media"
               src={preview}
             />
           ) : (
             <img
               src={preview}
               alt="Preview"
-              className="max-w-xs max-h-72 rounded"
+              className="vu-upload-media"
             />
           )}
+          <div className="vu-upload-meta">
+            <span className="vu-badge-live">Preview listo</span>
+            <p>Tu archivo ya quedó seleccionado. Puedes reemplazarlo haciendo clic en el panel.</p>
+          </div>
         </div>
       ) : (
-        <div className="cursor-pointer flex flex-col items-center gap-2">
-          <span className="text-gray-700 font-medium">
-            Selecciona una imagen o video
-          </span>
-          <input
-            type="file"
-            accept="image/*,video/*"
-            onChange={handleFileChange}
-            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-          />
-          <span className="px-4 py-2 text-blue-600 hover:bg-blue-700 transition">
-            Elegir archivo
-          </span>
+        <div className="vu-upload-empty">
+          <span className="vu-upload-icon">+</span>
+          <div>
+            <p className="vu-upload-title">Selecciona una imagen o video</p>
+            <p className="vu-upload-copy">
+              Arrastra tu archivo o usa este módulo para preparar la pieza que irá al feed.
+            </p>
+          </div>
+          <span className="vu-upload-cta">Elegir archivo</span>
         </div>
       )}
     </div>

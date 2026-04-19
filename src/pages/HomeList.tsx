@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { deletePost, getPosts, type Post } from '../api.ts';
 import PostCard from '../components/PostCard.tsx';
+import { ThemeToggle } from '../design-system/components/index.ts';
 
 export default function HomeList() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -35,32 +36,71 @@ export default function HomeList() {
   };
 
   return (
-    <div className="container mx-auto my-20 px-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold">Posts</h1>
-        <Link
-          to="/add"
-          className="bg-green-500 px-4 py-2 rounded-md text-white min-h-6"
-        >
-          Agregar
-        </Link>
-      </div>
+    <div className="vu-page-shell">
+      <div className="vu-page-backdrop" />
+      <div className="vu-page-inner">
+        <div className="vu-page-toolbar">
+          <ThemeToggle />
+        </div>
+        <section className="vu-hero-card">
+          <div className="vu-hero-copy">
+            <p className="vu-kicker">Viralco uploader</p>
+            <h1 className="vu-hero-title">Administra tus assets con la misma lógica visual del DS.</h1>
+            <p className="vu-hero-body">
+              El uploader ahora vive dentro del lenguaje Nocturnal Console: capas profundas, lectura editorial y llamadas a la acción de alto contraste.
+            </p>
+          </div>
+          <div className="vu-hero-actions">
+            <Link to="/ui-components" className="vu-btn vu-btn-secondary">
+              Ver UI kit
+            </Link>
+            <Link to="/add" className="vu-btn vu-btn-primary">
+              Nuevo post
+            </Link>
+          </div>
+        </section>
 
-      {loading && <p className="text-gray-600">Cargando...</p>}
-      {error && <p className="text-red-600">{error}</p>}
+        <section className="vu-stats-grid">
+          <article className="vu-stat-card">
+            <span className="vu-metric-label">Posts</span>
+            <strong>{posts.length}</strong>
+            <p>Assets visibles dentro del feed actual.</p>
+          </article>
+          <article className="vu-stat-card">
+            <span className="vu-metric-label">Estado API</span>
+            <strong>{error ? 'Con incidencia' : loading ? 'Sincronizando' : 'Operativa'}</strong>
+            <p>Lectura en tiempo real del flujo hacia el backend.</p>
+          </article>
+          <article className="vu-stat-card">
+            <span className="vu-metric-label">Sistema</span>
+            <strong>DS active</strong>
+            <p>Base visual alineada al portal de documentación del proyecto.</p>
+          </article>
+        </section>
 
-      {!loading && posts.length === 0 && (
-        <p className="text-gray-600">No hay posts todavía.</p>
-      )}
+        {loading && <p className="vu-feedback">Cargando assets...</p>}
+        {error && <p className="vu-feedback vu-feedback-danger">{error}</p>}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {posts.map((post) => (
-          <PostCard
-            key={post.id}
-            post={post}
-            onDelete={() => post.id && handleDelete(post.id)}
-          />
-        ))}
+        {!loading && posts.length === 0 && (
+          <section className="vu-empty-state">
+            <p className="vu-kicker">Empty state</p>
+            <h2>No hay posts todavía.</h2>
+            <p>Empieza creando tu primera pieza para que el feed use este mismo patrón de card y acciones.</p>
+            <Link to="/add" className="vu-btn vu-btn-primary">
+              Crear primer post
+            </Link>
+          </section>
+        )}
+
+        <div className="vu-post-grid">
+          {posts.map((post) => (
+            <PostCard
+              key={post.id}
+              post={post}
+              onDelete={() => post.id && handleDelete(post.id)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
