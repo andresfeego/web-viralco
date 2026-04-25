@@ -2,13 +2,11 @@ import darkTokens from './tokens/dark.tokens.json';
 import lightTokens from './tokens/light.tokens.json';
 import valueTokens from './tokens/value.tokens.json';
 
-type ThemeMode = 'dark' | 'light';
-
-function setVar(name: string, value: string | number) {
+function setVar(name, value) {
   document.documentElement.style.setProperty(name, String(value));
 }
 
-export function applyThemeVariables(theme: ThemeMode) {
+export function applyThemeVariables(theme) {
   const semantic = theme === 'light' ? lightTokens.color.semantic : darkTokens.color.semantic;
   const primitive = valueTokens.color.primitive;
   const elevation = valueTokens.elevation;

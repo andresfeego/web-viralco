@@ -1,19 +1,11 @@
-import { createContext, useContext, useEffect, useMemo, useState, type PropsWithChildren } from 'react';
-import { applyThemeVariables } from './theme-vars.ts';
-
-type ThemeMode = 'dark' | 'light';
-
-interface ThemeContextValue {
-  theme: ThemeMode;
-  toggleTheme: () => void;
-  setTheme: (theme: ThemeMode) => void;
-}
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { applyThemeVariables } from './theme-vars.js';
 
 const STORAGE_KEY = 'viralco-ui-theme';
 
-const ThemeContext = createContext<ThemeContextValue | null>(null);
+const ThemeContext = createContext(null);
 
-function getInitialTheme(): ThemeMode {
+function getInitialTheme() {
   if (typeof window === 'undefined') return 'dark';
 
   const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -22,8 +14,8 @@ function getInitialTheme(): ThemeMode {
   return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 }
 
-export function ThemeProvider({ children }: PropsWithChildren) {
-  const [theme, setThemeState] = useState<ThemeMode>(getInitialTheme);
+export function ThemeProvider({ children }) {
+  const [theme, setThemeState] = useState(getInitialTheme);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -31,7 +23,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
     window.localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
-  const value = useMemo<ThemeContextValue>(
+  const value = useMemo(
     () => ({
       theme,
       setTheme: setThemeState,
