@@ -1,16 +1,3 @@
-import type { PropsWithChildren, ReactNode } from 'react';
-
-interface UICardProps {
-  actions?: ReactNode;
-  eyebrow?: string;
-  body: string;
-  className?: string;
-  headerAside?: ReactNode;
-  interactive?: boolean;
-  media?: ReactNode;
-  title: string;
-}
-
 export default function UICard({
   actions,
   eyebrow,
@@ -21,7 +8,7 @@ export default function UICard({
   interactive = false,
   media,
   children,
-}: PropsWithChildren<UICardProps>) {
+}) {
   const classes = ['ui-card', interactive ? 'ui-card--interactive' : '', className ?? ''].filter(Boolean).join(' ');
 
   return (

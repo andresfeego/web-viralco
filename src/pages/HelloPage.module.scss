@@ -1,0 +1,26 @@
+.page {
+  position: relative;
+}
+
+.shell {
+  display: grid;
+  gap: var(--ui-space-24);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-16);
+}
+
+.cards {
+  display: grid;
+  gap: var(--ui-space-16);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
