@@ -14,6 +14,7 @@ export default function HelloPage() {
           <div className={styles.actions}>
             <UIButton size="lg">Comenzar</UIButton>
             <UIButton variant="ghost" size="lg">Ver roadmap</UIButton>
+            <UIButton variant="secondary" size="lg" href="/ui-components">System Design</UIButton>
           </div>
 
           <div className={styles.cards}>
